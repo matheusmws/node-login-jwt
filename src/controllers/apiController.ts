@@ -64,6 +64,7 @@ export const login = async (req: Request, res: Response) => {
                 );
 
                 res.json({ status: true, token });
+                
             } else {
                 res.status(401);
                 res.json({ status: false });
