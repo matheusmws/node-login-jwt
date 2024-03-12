@@ -19,7 +19,32 @@ server.use(apiRoutes);
 
 server.use((req: Request, res: Response) => {
     res.status(404);
-    res.json({ error: 'Endpoint não encontrado.' });
+
+    switch (req.url) {
+        case '/ping':
+            if (req.method !== 'GET') {
+                return res.json({ error: 'Método de requisição inválido.' });
+            };
+            break;
+        case '/register':
+            if (req.method !== 'POST') {
+                return res.json({ error: 'Método de requisição inválido.' });
+            };
+            break;
+        case '/login':
+            if (req.method !== 'POST') {
+                return res.json({ error: 'Método de requisição inválido.' });
+            };
+            break;
+        case '/list':
+            if (req.method !== 'GET') {
+                return res.json({ error: 'Método de requisição inválido.' });
+            };
+            break;
+        default:
+            res.json({ error: 'Endpoint não encontrado.' });
+            break;
+    }
 });
 
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
